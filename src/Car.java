@@ -32,6 +32,8 @@ public abstract class Car {
     public abstract void startMoving();
     public abstract void stopMoving();
 
+    public abstract void printCarType();
+
     @Override
     public String toString() {
         return "Автомобиль: " + getBrand() + " " + getModel() + ", \n" +
