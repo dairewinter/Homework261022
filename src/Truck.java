@@ -2,7 +2,9 @@ public class Truck extends Car implements Competing{
 
     private Carry carry;
     public enum Carry {
-        N1 (0D, 3.5), N2 (3.5, 12D), N3 (12D, null);
+        N1 (null, 3.5),
+        N2 (3.5, 12D),
+        N3 (12D, null);
 
         private Double from;
         private Double to;
@@ -54,6 +56,11 @@ public class Truck extends Car implements Competing{
             String to = carry.getTo() == null ? "" : " до" + carry.getTo();
             System.out.println("Грузоподъёмность грузового автомобиля " + getBrand() + " " + getModel() + from + to);
         }
+    }
+
+    @Override
+    public boolean passDiagnostics() {
+        return Math.random() > 0.7;
     }
 
     @Override

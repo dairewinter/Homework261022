@@ -3,7 +3,13 @@ public class PassengerCar extends Car implements Competing{
     private TypeOfBody typeOfBody;
 
     public enum TypeOfBody {
-        SEDAN, HATCHBACK, COUPE, UNIVERSAL, SUV, CROSSOVER, PICKUP, VAN, MINIVAN
+        SEDAN ("Седан"), HATCHBACK ("Хетчбек"), COUPE ("Купе"), UNIVERSAL ("Универсал"), SUV ("Внедорожник"), CROSSOVER ("Кроссовер"), PICKUP ("Пикап"), VAN ("Фургон"), MINIVAN ("Минивэн");
+
+        private final String name;
+
+        TypeOfBody(String name) {
+            this.name = name;
+        }
     }
     public PassengerCar(String brand, String model, float engineDisplacement, TypeOfBody typeOfBody) {
         super(brand, model, engineDisplacement);
@@ -27,6 +33,11 @@ public class PassengerCar extends Car implements Competing{
         } else {
             System.out.println("Тип кузова легкового автомобиля " + getBrand() + " " + getModel() + " : " + typeOfBody);
         }
+    }
+
+    @Override
+    public boolean passDiagnostics() {
+        return Math.random() > 0.5;
     }
 
 

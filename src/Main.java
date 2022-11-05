@@ -1,3 +1,5 @@
+import Exceptions.AuthorisationData;
+
 public class Main {
     public static void main(String[] args) {
         PassengerCar kia = new PassengerCar("Kia", "Sportage", 1.6f, PassengerCar.TypeOfBody.PICKUP);
@@ -12,5 +14,23 @@ public class Main {
         kia.printCarType();
         cursor.printCarType();
         leningrad.printCarType();
+        
+        carService(kia, cursor, leningrad);
+
+
+        boolean logPass = AuthorisationData.logAndPassValid("fgfgdfgdf", "adadad", "adadad");
+        if(logPass){
+            System.out.println("Данные корректны");
+        } else {
+            System.out.println("Данные некорректны, попробуйте еще раз");
+        }
+    }
+
+    public static void carService(Car... cars){
+        for (Car car : cars) {
+            if(!car.passDiagnostics()){
+                throw new RuntimeException("Автомобиль " + car.getBrand() + " " + car.getModel() + " не прошел диагностику");
+            }
+        }
     }
 }

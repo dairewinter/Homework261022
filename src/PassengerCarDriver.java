@@ -5,7 +5,7 @@ public class PassengerCarDriver<B extends PassengerCar & Competing> {
 
     public PassengerCarDriver(String driverName, String driverLicense, int experience) {
         this.driverName = Validation.validOrDefault(driverName, "Имя не указано");
-        this.driverLicense = driverLicense;
+        setDriverLicense(driverLicense);
         this.experience = Math.max(experience, 0);
     }
 
@@ -18,7 +18,10 @@ public class PassengerCarDriver<B extends PassengerCar & Competing> {
     }
 
     public void setDriverLicense(String driverLicense) {
-        this.driverLicense = driverLicense;
+        if (driverLicense == null){
+            throw new IllegalArgumentException("Необходимо указать тип прав");
+        }
+        this.driverLicense = Validation.validOrDefault(driverLicense, "невалидная лицензия");
     }
 
     public int getExperience() {
